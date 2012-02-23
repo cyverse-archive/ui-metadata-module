@@ -29,6 +29,7 @@ public class DataObject extends JSONMetaDataObject {
     public static String OUTPUT_FILENAME = "output_filename"; //$NON-NLS-1$
     public static String FORMAT_ID = "format_id"; //$NON-NLS-1$
     public static String FORMAT = "format"; //$NON-NLS-1$
+    public static String IS_OUTPUT_IMPLICIT = "is_implicit";
 
     /** whether a filename is required (input fields only) */
     public static String REQUIRED = "required"; //$NON-NLS-1$
@@ -49,6 +50,7 @@ public class DataObject extends JSONMetaDataObject {
     private String format;
     private boolean required;
     private boolean retain;
+    private boolean implicit;
 
     /**
      * Create a new instance of DataObject
@@ -95,6 +97,7 @@ public class DataObject extends JSONMetaDataObject {
 
         setRequired(JsonUtil.getBoolean(json, REQUIRED, true));
         setRetain(JsonUtil.getBoolean(json, RETAIN, OUTPUT_TYPE.equals(getType())));
+        setImplicit(JsonUtil.getBoolean(json, IS_OUTPUT_IMPLICIT, false));
     }
 
     private String getFormats(JSONArray arr) {
@@ -371,6 +374,7 @@ public class DataObject extends JSONMetaDataObject {
         }
 
         ret.put(REQUIRED, JSONBoolean.getInstance(isRequired()));
+        ret.put(IS_OUTPUT_IMPLICIT, JSONBoolean.getInstance(isImplicit()));
 
         return ret;
     }
@@ -394,6 +398,21 @@ public class DataObject extends JSONMetaDataObject {
         }
 
         return arr;
+    }
+
+    /**
+     * @param implicit boolean to set if the DataObject is implicit Applies only to Output Data Object
+     * 
+     */
+    public void setImplicit(boolean implicit) {
+        this.implicit = implicit;
+    }
+
+    /**
+     * @return the implicit the data object is implicit or not Applies only to Output Data Object
+     */
+    public boolean isImplicit() {
+        return implicit;
     }
 
 }
