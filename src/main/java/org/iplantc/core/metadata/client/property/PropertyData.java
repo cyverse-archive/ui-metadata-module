@@ -1,6 +1,6 @@
 package org.iplantc.core.metadata.client.property;
 
-import org.iplantc.de.client.I18N;
+import org.iplantc.de.client.DeCommonI18N;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
@@ -95,7 +95,7 @@ public class PropertyData extends BaseModelData implements Comparable<PropertyDa
 
     private String getDefaultValueLabel() {
         if (stringIsNullOrEmpty(property.getValue())) {
-            return "(" + I18N.DISPLAY.valueParenS() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+            return "(" + DeCommonI18N.DISPLAY.valueParenS() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         return property.getValue();
