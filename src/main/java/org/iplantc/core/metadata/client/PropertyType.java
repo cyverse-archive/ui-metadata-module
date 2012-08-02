@@ -1,45 +1,39 @@
 package org.iplantc.core.metadata.client;
 
+import org.iplantc.core.jsonutil.JsonUtil;
+
 import com.extjs.gxt.ui.client.data.BaseModelData;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 
 public class PropertyType extends BaseModelData {
     private static final long serialVersionUID = -8067165423027703868L;
-    public static final String ID = "id";
-    public static final String NAME = "name";
-    public static final String DESCRIPTION = "description";
-    public static final String TYPE = "value_type";
+    public static final String ID = "id"; //$NON-NLS-1$
+    public static final String NAME = "name"; //$NON-NLS-1$
+    public static final String DESCRIPTION = "description"; //$NON-NLS-1$
+    public static final String TYPE = "value_type"; //$NON-NLS-1$
 
     public PropertyType(JSONObject json) {
-        set(ID, json.get(ID).isString().stringValue());
-        set(NAME, json.get(NAME).isString().stringValue());
-        set(DESCRIPTION, json.get(DESCRIPTION).isString().stringValue());
-        set(TYPE, json.get(TYPE).isString().stringValue());
-    }
-
-    private String getString(final String key) {
-        if (get(key) != null) {
-            return get(key).toString();
-        } else {
-            return "";
-        }
+        set(ID, JsonUtil.getString(json, ID));
+        set(NAME, JsonUtil.getString(json, NAME));
+        set(DESCRIPTION, JsonUtil.getString(json, DESCRIPTION));
+        set(TYPE, JsonUtil.getString(json, TYPE));
     }
 
     public String getId() {
-        return getString(ID);
+        return get(ID);
     }
 
     public String getName() {
-        return getString(NAME);
+        return get(NAME);
     }
 
     public String getDescription() {
-        return getString(DESCRIPTION);
+        return get(DESCRIPTION);
     }
 
     public String getType() {
-        return getString(TYPE);
+        return get(TYPE);
     }
 
     public JSONObject toJson() {
