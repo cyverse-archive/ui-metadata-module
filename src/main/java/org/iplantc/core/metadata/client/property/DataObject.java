@@ -29,7 +29,8 @@ public class DataObject extends JSONMetaDataObject {
     public static String OUTPUT_FILENAME = "output_filename"; //$NON-NLS-1$
     public static String FORMAT_ID = "format_id"; //$NON-NLS-1$
     public static String FORMAT = "format"; //$NON-NLS-1$
-    public static String IS_OUTPUT_IMPLICIT = "is_implicit";
+    public static String IS_OUTPUT_IMPLICIT = "is_implicit"; //$NON-NLS-1$
+    public static String DATA_SOURCE = "data_source"; //$NON-NLS-1$
 
     /** whether a filename is required (input fields only) */
     public static String REQUIRED = "required"; //$NON-NLS-1$
@@ -48,6 +49,8 @@ public class DataObject extends JSONMetaDataObject {
     private String filename;
     private String formatId;
     private String format;
+    private String dataSrc;
+
     private boolean required;
     private boolean retain;
     private boolean implicit;
@@ -91,6 +94,7 @@ public class DataObject extends JSONMetaDataObject {
         setFileTypeId(JsonUtil.getString(json, FILE_INFO_TYPE_ID));
         setFileType(JsonUtil.getString(json, FILE_INFO_TYPE));
         setOutputFilename(JsonUtil.getString(json, OUTPUT_FILENAME));
+        setDataSource(JsonUtil.getString(json, DATA_SOURCE));
 
         setFormatId(getFormats(JsonUtil.getArray(json, FORMAT_ID)));
         setFormat(getFormats(JsonUtil.getArray(json, FORMAT)));
@@ -196,6 +200,15 @@ public class DataObject extends JSONMetaDataObject {
      */
     public void setFormat(String format) {
         this.format = format;
+    }
+
+    /**
+     * Sets the data source type.
+     * 
+     * @param dataSrc
+     */
+    public void setDataSource(String dataSrc) {
+        this.dataSrc = dataSrc;
     }
 
     /**
@@ -306,6 +319,15 @@ public class DataObject extends JSONMetaDataObject {
         return getNonNullString(formatId);
     }
 
+    /**
+     * Get the data source type.
+     * 
+     * @return format id
+     */
+    public String getDataSource() {
+        return getNonNullString(dataSrc);
+    }
+
     private String getNonNullString(String ret) {
         if (ret == null) {
             return ""; //$NON-NLS-1$
@@ -359,7 +381,7 @@ public class DataObject extends JSONMetaDataObject {
         ret.put(FILE_INFO_TYPE_ID, new JSONString(getFileInfoTypeId()));
         ret.put(FILE_INFO_TYPE, new JSONString(getFileInfoType()));
         ret.put(OUTPUT_FILENAME, new JSONString(getOutputFilename()));
-        ret.put(RETAIN, JSONBoolean.getInstance(isRetain()));
+        ret.put(DATA_SOURCE, new JSONString(getDataSource()));
 
         if (getFormatId() == null || getFormatId().equals("")) { //$NON-NLS-1$
             ret.put(FORMAT_ID, new JSONArray());
@@ -374,6 +396,7 @@ public class DataObject extends JSONMetaDataObject {
         }
 
         ret.put(REQUIRED, JSONBoolean.getInstance(isRequired()));
+        ret.put(RETAIN, JSONBoolean.getInstance(isRetain()));
         ret.put(IS_OUTPUT_IMPLICIT, JSONBoolean.getInstance(isImplicit()));
 
         return ret;
