@@ -210,7 +210,7 @@ public class Property extends JSONMetaDataObject {
         json.put(OMIT_IF_BLANK, JSONBoolean.getInstance(omit_if_blank));
 
         if (DataObject.INPUT_TYPE.equalsIgnoreCase(type)
-                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type)) {
+                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type) && dataObject != null) {
             json.put(DATA_OBJECT, dataObjectToJson());
         }
 
