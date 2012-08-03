@@ -8,7 +8,6 @@ import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
 
 /**
  * 
@@ -83,9 +82,9 @@ public class DataObject extends JSONMetaDataObject {
             setMultiplicity(MULTIPLICITY_ONE);
         }
 
-        JSONValue order = json.get(ORDER);
-        if (order != null && order.isNumber() != null) {
-            setOrder((int)order.isNumber().doubleValue());
+        Number order = JsonUtil.getNumber(json, ORDER);
+        if (order != null) {
+            setOrder(order.intValue());
         } else {
             setOrder(-1);
         }
