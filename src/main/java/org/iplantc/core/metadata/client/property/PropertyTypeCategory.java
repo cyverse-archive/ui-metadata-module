@@ -15,6 +15,7 @@ public enum PropertyTypeCategory {
     STRING("String", "String"),
     NUMBER("Number", "Number"),
     BOOLEAN("Boolean", "Boolean"),
+    ENV("EnvironmentVariable", "Environment Variable"),
     OUTPUT(DataObject.OUTPUT_TYPE, DataObject.OUTPUT_TYPE);
 
     private String valueType;
