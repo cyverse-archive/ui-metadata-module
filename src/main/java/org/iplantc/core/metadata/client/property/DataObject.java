@@ -98,7 +98,7 @@ public class DataObject extends JSONMetaDataObject {
         setFormatId(getFormats(JsonUtil.getArray(json, FORMAT_ID)));
         setFormat(getFormats(JsonUtil.getArray(json, FORMAT)));
 
-        setRequired(JsonUtil.getBoolean(json, REQUIRED, true));
+        setRequired(JsonUtil.getBoolean(json, REQUIRED, false));
         setRetain(JsonUtil.getBoolean(json, RETAIN, OUTPUT_TYPE.equals(getType())));
         setImplicit(JsonUtil.getBoolean(json, IS_OUTPUT_IMPLICIT, false));
     }
