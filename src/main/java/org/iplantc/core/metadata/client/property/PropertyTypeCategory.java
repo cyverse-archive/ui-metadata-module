@@ -2,6 +2,8 @@ package org.iplantc.core.metadata.client.property;
 
 import java.util.Collection;
 
+import org.iplantc.core.metadata.client.I18N;
+
 /**
  * An enum to represent property types. The constructor takes a "value_type" string, which must match a
  * value returned by the property-types service, as well a display string for displaying to the user in
@@ -11,12 +13,12 @@ import java.util.Collection;
  * 
  */
 public enum PropertyTypeCategory {
-    INPUT(DataObject.INPUT_TYPE, DataObject.INPUT_TYPE),
-    STRING("String", "String"),
-    NUMBER("Number", "Number"),
-    BOOLEAN("Boolean", "Boolean"),
-    ENV("EnvironmentVariable", "Environment Variable"),
-    OUTPUT(DataObject.OUTPUT_TYPE, DataObject.OUTPUT_TYPE);
+    INPUT(DataObject.INPUT_TYPE, I18N.DISPLAY.propertyCategoryInput()),
+    STRING("String", I18N.DISPLAY.propertyCategoryString()), //$NON-NLS-1$
+    NUMBER("Number", I18N.DISPLAY.propertyCategoryNumber()), //$NON-NLS-1$
+    BOOLEAN("Boolean", I18N.DISPLAY.propertyCategoryBoolean()), //$NON-NLS-1$
+    ENV("EnvironmentVariable", I18N.DISPLAY.propertyCategoryEnvironmentVariable()), //$NON-NLS-1$
+    OUTPUT(DataObject.OUTPUT_TYPE, I18N.DISPLAY.propertyCategoryOutput());
 
     private String valueType;
     private String displayText;
