@@ -58,13 +58,10 @@ public class Property extends JSONMetaDataObject {
     }
 
     private void parseOrder(final JSONObject json) {
-        JSONValue val = json.get(ORDER);
+        Number jsonOrder = JsonUtil.getNumber(json, ORDER);
 
-        if (val != null) {
-            JSONNumber jsonOrder = val.isNumber();
-            if (jsonOrder != null) {
-                order = (int)jsonOrder.doubleValue();
-            }
+        if (jsonOrder != null) {
+            order = jsonOrder.intValue();
         }
     }
 
