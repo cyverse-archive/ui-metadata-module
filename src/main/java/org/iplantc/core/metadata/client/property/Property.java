@@ -83,8 +83,9 @@ public class Property extends JSONMetaDataObject {
     protected void beforeParse() {
         super.beforeParse();
 
-        // set property as unordered by default
-        order = -1;
+        // set default order to a value that tells the service this property is ordered but not in a
+        // specific cmd line position.
+        order = 0;
     }
 
     /**
