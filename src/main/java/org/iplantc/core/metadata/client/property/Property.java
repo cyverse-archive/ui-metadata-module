@@ -208,7 +208,7 @@ public class Property extends JSONMetaDataObject {
         json.put(OMIT_IF_BLANK, JSONBoolean.getInstance(omit_if_blank));
 
         if (DataObject.INPUT_TYPE.equalsIgnoreCase(type)
-                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type) && dataObject != null) {
+                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type)) {
             json.put(DATA_OBJECT, dataObjectToJson());
         }
 
@@ -216,6 +216,10 @@ public class Property extends JSONMetaDataObject {
     }
 
     protected JSONObject dataObjectToJson() {
+        if (dataObject == null) {
+            return null;
+        }
+
         dataObject.setName(getLabel());
         dataObject.setLabel(getLabel());
         dataObject.setCmdSwitch(getName());
