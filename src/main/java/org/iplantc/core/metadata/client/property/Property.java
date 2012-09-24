@@ -58,13 +58,10 @@ public class Property extends JSONMetaDataObject {
     }
 
     private void parseOrder(final JSONObject json) {
-        JSONValue val = json.get(ORDER);
+        Number jsonOrder = JsonUtil.getNumber(json, ORDER);
 
-        if (val != null) {
-            JSONNumber jsonOrder = val.isNumber();
-            if (jsonOrder != null) {
-                order = (int)jsonOrder.doubleValue();
-            }
+        if (jsonOrder != null) {
+            order = jsonOrder.intValue();
         }
     }
 
@@ -83,8 +80,9 @@ public class Property extends JSONMetaDataObject {
     protected void beforeParse() {
         super.beforeParse();
 
-        // set property as unordered by default
-        order = -1;
+        // set default order to a value that tells the service this property is ordered but not in a
+        // specific cmd line position.
+        order = 0;
     }
 
     /**
@@ -210,7 +208,7 @@ public class Property extends JSONMetaDataObject {
         json.put(OMIT_IF_BLANK, JSONBoolean.getInstance(omit_if_blank));
 
         if (DataObject.INPUT_TYPE.equalsIgnoreCase(type)
-                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type) && dataObject != null) {
+                || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type)) {
             json.put(DATA_OBJECT, dataObjectToJson());
         }
 
@@ -218,6 +216,10 @@ public class Property extends JSONMetaDataObject {
     }
 
     protected JSONObject dataObjectToJson() {
+        if (dataObject == null) {
+            return null;
+        }
+
         dataObject.setName(getLabel());
         dataObject.setLabel(getLabel());
         dataObject.setCmdSwitch(getName());
