@@ -27,7 +27,7 @@ public class Property extends JSONMetaDataObject {
     private MetaDataValidator validator;
     private int order;
     private DataObject dataObject;
-    private boolean omit_if_blank;
+    private boolean omitIfBlank;
 
     /**
      * Instantiate from a JSONObject.
@@ -106,7 +106,7 @@ public class Property extends JSONMetaDataObject {
         if (val != null) {
             JSONBoolean jsonFlag = val.isBoolean();
             if (jsonFlag != null) {
-                setOmit_if_blank(jsonFlag.booleanValue());
+                setOmitIfBlank(jsonFlag.booleanValue());
             }
         }
         
@@ -205,7 +205,7 @@ public class Property extends JSONMetaDataObject {
         }
         
         json.put(ORDER, new JSONNumber(order));
-        json.put(OMIT_IF_BLANK, JSONBoolean.getInstance(omit_if_blank));
+        json.put(OMIT_IF_BLANK, JSONBoolean.getInstance(omitIfBlank));
 
         if (DataObject.INPUT_TYPE.equalsIgnoreCase(type)
                 || DataObject.OUTPUT_TYPE.equalsIgnoreCase(type)) {
@@ -232,16 +232,16 @@ public class Property extends JSONMetaDataObject {
     }
 
     /**
-     * @param omit_if_blank the omit_if_blank to set
+     * @param omitIfBlank the omit-if-blank flag to set.
      */
-    public void setOmit_if_blank(boolean omit_if_blank) {
-        this.omit_if_blank = omit_if_blank;
+    public void setOmitIfBlank(boolean omitIfBlank) {
+        this.omitIfBlank = omitIfBlank;
     }
 
     /**
-     * @return the omit_if_blank
+     * @return the omit-if-blank flag.
      */
-    public boolean isOmit_if_blank() {
-        return omit_if_blank;
+    public boolean isOmitIfBlank() {
+        return omitIfBlank;
     }
 }
