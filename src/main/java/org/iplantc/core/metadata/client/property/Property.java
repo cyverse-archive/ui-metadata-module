@@ -20,7 +20,7 @@ public class Property extends JSONMetaDataObject {
     public static String VALIDATOR = "validator"; //$NON-NLS-1$
     public static String ORDER = "order"; //$NON-NLS-1$
     public static String DATA_OBJECT = "data_object"; //$NON-NLS-1$
-    public static String OMIT_IF_BLANK = "omitIfBlank"; //$NON-NLS-1$
+    public static String OMIT_IF_BLANK = "omit_if_blank"; //$NON-NLS-1$
 
     private String value;
     private MetaDataValidator validator;
