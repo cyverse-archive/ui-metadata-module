@@ -8,7 +8,6 @@ import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
 
 /**
  * Metadata property.
@@ -96,20 +95,8 @@ public class Property extends JSONMetaDataObject {
         parseType(json);
         parseOrder(json);
         parseDataObject(json);
-        parseOmitFlag(json);
+        setOmitIfBlank(JsonUtil.getBoolean(json, OMIT_IF_BLANK, false));
         setValue(JsonUtil.getString(json, VALUE));
-    }
-
-    private void parseOmitFlag(JSONObject json) {
-        JSONValue val = json.get(OMIT_IF_BLANK);
-
-        if (val != null) {
-            JSONBoolean jsonFlag = val.isBoolean();
-            if (jsonFlag != null) {
-                setOmitIfBlank(jsonFlag.booleanValue());
-            }
-        }
-        
     }
 
     /**
