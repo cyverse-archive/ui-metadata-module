@@ -51,4 +51,32 @@ public interface DisplayStrings extends CommonDisplayStrings {
      * @return string representing the text
      */
     String propertyCategoryOutput();
+
+    /**
+     * Localized text for the tree-selection-editor cascade setting.
+     * 
+     * @return a string representing the localized text.
+     */
+    String treeSelectorCascadeTri();
+
+    /**
+     * Localized text for the tree-selection-editor cascade setting.
+     * 
+     * @return a string representing the localized text.
+     */
+    String treeSelectorCascadeParent();
+
+    /**
+     * Localized text for the tree-selection-editor cascade setting.
+     * 
+     * @return a string representing the localized text.
+     */
+    String treeSelectorCascadeChildren();
+
+    /**
+     * Localized text for the tree-selection-editor cascade setting.
+     * 
+     * @return a string representing the localized text.
+     */
+    String treeSelectorCascadeNone();
 }
