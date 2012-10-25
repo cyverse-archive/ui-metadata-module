@@ -5,6 +5,7 @@ import java.util.List;
 import org.iplantc.core.metadata.client.I18N;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
+import com.sencha.gxt.widget.core.client.tree.Tree;
 
 /**
  * An AutoBean interface for ListRuleArgument groups.
@@ -15,15 +16,21 @@ import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 public interface ListRuleArgumentGroup extends ListRuleArgument {
 
     public enum CheckCascade {
-        TRI(I18N.DISPLAY.treeSelectorCascadeTri()),
-        PARENTS(I18N.DISPLAY.treeSelectorCascadeParent()),
-        CHILDREN(I18N.DISPLAY.treeSelectorCascadeChildren()),
-        NONE(I18N.DISPLAY.treeSelectorCascadeNone());
+        TRI(Tree.CheckCascade.TRI, I18N.DISPLAY.treeSelectorCascadeTri()),
+        PARENTS(Tree.CheckCascade.PARENTS, I18N.DISPLAY.treeSelectorCascadeParent()),
+        CHILDREN(Tree.CheckCascade.CHILDREN, I18N.DISPLAY.treeSelectorCascadeChildren()),
+        NONE(Tree.CheckCascade.NONE, I18N.DISPLAY.treeSelectorCascadeNone());
 
+        private final Tree.CheckCascade cascade;
         private final String display;
 
-        private CheckCascade(String display) {
+        private CheckCascade(Tree.CheckCascade cascade, String display) {
+            this.cascade = cascade;
             this.display = display;
+        }
+
+        public Tree.CheckCascade getTreeCheckCascade() {
+            return cascade;
         }
 
         public String getDisplay() {
