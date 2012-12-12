@@ -4,6 +4,7 @@ import org.iplantc.core.jsonutil.JsonUtil;
 import org.iplantc.core.metadata.client.JSONMetaDataObject;
 import org.iplantc.core.metadata.client.validation.MetaDataValidator;
 
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
@@ -96,7 +97,16 @@ public class Property extends JSONMetaDataObject {
         parseOrder(json);
         parseDataObject(json);
         setOmitIfBlank(JsonUtil.getBoolean(json, OMIT_IF_BLANK, false));
-        setValue(JsonUtil.getString(json, VALUE));
+        // test if the value is JSONObject or JSONArray
+        JSONObject objValue = JsonUtil.getObject(json, VALUE);
+        JSONArray arrValue = JsonUtil.getArray(json, VALUE);
+        if (objValue != null) {
+                setValue(objValue.toString());
+        } else if (arrValue != null) {
+                 setValue(arrValue.toString());
+        } else {
+            setValue(JsonUtil.getString(json, VALUE));
+        }
     }
 
     /**
