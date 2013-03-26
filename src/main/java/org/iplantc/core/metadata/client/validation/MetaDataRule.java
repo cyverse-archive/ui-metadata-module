@@ -133,7 +133,6 @@ public class MetaDataRule extends BaseModelData {
         return json;
     }
 
-    @Override
     public MetaDataRule clone() {
         return new MetaDataRule(toJSON());
     }
