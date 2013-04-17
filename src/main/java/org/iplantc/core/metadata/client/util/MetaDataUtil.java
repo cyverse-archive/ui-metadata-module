@@ -71,8 +71,9 @@ public class MetaDataUtil {
 
             params.set(index, rule);
 
-            if (JsonUtil.getBoolean(rule, MetaDataRule.IS_DEFAULT, false)) {
-                property.setValue(String.valueOf(index));
+            if (JsonUtil.getBoolean(rule, MetaDataRule.IS_DEFAULT, false)
+                    && (property.getValue() == null || property.getValue().isEmpty())) {
+                property.setValue(rule.toString());
             }
         }
     }
