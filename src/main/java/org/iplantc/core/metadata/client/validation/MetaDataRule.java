@@ -17,8 +17,9 @@ import com.google.gwt.json.client.JSONValue;
  * Metadata rule definition.
  * 
  * @author amuir
- * 
+ * @deprecated Class needs to be deleted or ported to GXT3
  */
+@Deprecated
 public class MetaDataRule extends BaseModelData {
     public final static String TYPE_PROPERTY = "type"; //$NON-NLS-1$
     public final static String PARAMS_PROPERTY = "params"; //$NON-NLS-1$

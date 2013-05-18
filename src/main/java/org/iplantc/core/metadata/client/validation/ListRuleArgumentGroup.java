@@ -2,16 +2,16 @@ package org.iplantc.core.metadata.client.validation;
 
 import java.util.List;
 
-import org.iplantc.core.metadata.client.I18N;
+import org.iplantc.core.resources.client.messages.I18N;
 
 import com.google.web.bindery.autobean.shared.AutoBean.PropertyName;
 import com.sencha.gxt.widget.core.client.tree.Tree;
 
 /**
  * An AutoBean interface for ListRuleArgument groups.
- * 
+ *
  * @author psarando
- * 
+ *
  */
 public interface ListRuleArgumentGroup extends ListRuleArgument {
 
